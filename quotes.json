@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "quote": "Let's go online.",
+    "name": "Giovanni",
+    "context": "On the occasion of the router arriving",
+    "date": "2026-05-18"
+  },
+  {
+    "id": 2,
+    "quote": "I'll do the dishes tomorrow.",
+    "name": "Resident, name withheld",
+    "context": "Every evening, without exception, since moving in",
+    "date": "2026-05-18"
+  },
+  {
+    "id": 3,
+    "quote": "Has anyone seen the good pan?",
+    "name": "Various residents, in unison",
+    "context": "Tuesday, also Wednesday, also every other day",
+    "date": "2026-05-18"
+  },
+  {
+    "id": 4,
+    "quote": "I think this milk is still fine.",
+    "name": "Unnamed optimist",
+    "context": "Day 4 past the expiry date",
+    "date": "2026-05-18"
+  }
+]

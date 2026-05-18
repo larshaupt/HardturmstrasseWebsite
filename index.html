@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Hardturmstrasse ★★★★★</title>
+  <style>
+    :root {
+      --gold: #c9a84c;
+      --dark: #1a1a1a;
+      --darker: #111;
+      --light: #f5f0e8;
+      --muted: #888;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--darker);
+      color: var(--light);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2.5rem;
+      background: rgba(17,17,17,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    nav .logo {
+      font-size: 1rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav a {
+      color: var(--light);
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    nav a:hover { opacity: 1; color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      background:
+        linear-gradient(rgba(17,17,17,0.55), rgba(17,17,17,0.7)),
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 40px,
+          rgba(201,168,76,0.03) 40px,
+          rgba(201,168,76,0.03) 80px
+        );
+    }
+    .hero-stars { color: var(--gold); font-size: 1.2rem; letter-spacing: 0.4em; margin-bottom: 1.5rem; }
+    .hero h1 {
+      font-size: clamp(2.2rem, 7vw, 5.5rem);
+      font-weight: normal;
+      letter-spacing: 0.08em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero .subtitle {
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3rem;
+    }
+    .hero .tagline {
+      font-style: italic;
+      font-size: 1.2rem;
+      color: rgba(245,240,232,0.7);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.5rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      transition: background 0.25s, color 0.25s;
+    }
+    .btn:hover { background: var(--gold); color: var(--darker); }
+
+    /* SECTIONS */
+    section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+    .section-label {
+      font-family: Arial, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+    h2 { font-size: clamp(1.6rem, 4vw, 2.8rem); font-weight: normal; margin-bottom: 1.5rem; }
+    .divider { width: 50px; height: 1px; background: var(--gold); margin: 1.5rem 0 2.5rem; }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .about-text p { color: rgba(245,240,232,0.8); margin-bottom: 1rem; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .stat { border: 1px solid rgba(201,168,76,0.2); padding: 1.5rem; text-align: center; }
+    .stat .number { font-size: 2.2rem; color: var(--gold); display: block; line-height: 1; margin-bottom: 0.4rem; }
+    .stat .label { font-family: Arial, sans-serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+
+    /* AMENITIES */
+    #amenities { background: rgba(255,255,255,0.02); }
+    .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .amenity-card { border: 1px solid rgba(201,168,76,0.15); padding: 2rem; transition: border-color 0.2s, transform 0.2s; }
+    .amenity-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .amenity-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .amenity-card h3 { font-size: 1rem; font-weight: normal; color: var(--gold); margin-bottom: 0.5rem; letter-spacing: 0.05em; }
+    .amenity-card p { font-family: Arial, sans-serif; font-size: 0.85rem; color: rgba(245,240,232,0.65); line-height: 1.6; }
+    .amenity-card .fine-print { font-size: 0.72rem; color: var(--muted); margin-top: 0.5rem; font-style: italic; }
+
+    /* QUOTES */
+    .quotes-intro { font-family: Arial, sans-serif; font-size: 0.85rem; color: var(--muted); margin-bottom: 3rem; max-width: 520px; }
+    .quotes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .quote-card { border-left: 2px solid var(--gold); padding: 1.5rem 1.5rem 1.5rem 2rem; background: rgba(255,255,255,0.03); position: relative; }
+    .quote-card .quote-mark { position: absolute; top: 0.5rem; right: 1rem; font-size: 4rem; color: rgba(201,168,76,0.12); line-height: 1; font-family: Georgia, serif; pointer-events: none; }
+    .quote-card blockquote { font-style: italic; font-size: 1.05rem; color: var(--light); margin-bottom: 1rem; }
+    .quote-card .attribution { font-family: Arial, sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .quote-card .context { font-family: Arial, sans-serif; font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; font-style: italic; }
+
+    /* GUESTBOOK FORM */
+    .guestbook-form-wrap {
+      margin-top: 4rem;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      padding-top: 3rem;
+    }
+    .guestbook-form-wrap h3 {
+      font-size: 1.3rem;
+      font-weight: normal;
+      margin-bottom: 0.5rem;
+    }
+    .guestbook-form-wrap .form-note {
+      font-family: Arial, sans-serif;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    #quote-form { display: grid; gap: 1rem; max-width: 560px; }
+    #quote-form input,
+    #quote-form textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.2);
+      color: var(--light);
+      font-family: Georgia, serif;
+      font-size: 0.95rem;
+      padding: 0.85rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+    #quote-form input:focus,
+    #quote-form textarea:focus { border-color: var(--gold); }
+    #quote-form textarea { min-height: 100px; }
+    #quote-form input::placeholder,
+    #quote-form textarea::placeholder { color: var(--muted); }
+    #quote-form button[type="submit"] {
+      padding: 0.9rem 2.5rem;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: Arial, sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+      justify-self: start;
+    }
+    #quote-form button[type="submit"]:hover { background: var(--gold); color: var(--darker); }
+    #quote-form button[type="submit"]:disabled { opacity: 0.4; cursor: not-allowed; }
+    #form-message { font-family: Arial, sans-serif; font-size: 0.85rem; margin-top: 0.5rem; min-height: 1.4rem; }
+
+    /* HOUSE RULES */
+    .rules-list { list-style: none; max-width: 600px; }
+    .rules-list li {
+      display: flex; gap: 1rem; padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-family: Arial, sans-serif; font-size: 0.9rem;
+      color: rgba(245,240,232,0.8); align-items: baseline;
+    }
+    .rules-list li::before { content: attr(data-num); color: var(--gold); font-family: Georgia, serif; font-size: 1.1rem; flex-shrink: 0; min-width: 1.5rem; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(201,168,76,0.15);
+      padding: 3rem 2rem;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    footer .footer-logo { font-family: Georgia, serif; font-size: 1.1rem; color: var(--gold); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 0.8rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
+      nav ul { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Hotel Hardturmstrasse</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#amenities">Amenities</a></li>
+    <li><a href="#quotes">Guestbook</a></li>
+    <li><a href="#rules">House Rules</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-stars">★ ★ ★ ★ ★</div>
+  <h1>Hotel<br /><span>Hardturmstrasse</span></h1>
+  <p class="subtitle">Zurich's most exclusive shared flat since whenever we moved in</p>
+  <p class="tagline">"Where every day is check-out day, and no one ever actually leaves."</p>
+  <a href="#quotes" class="btn">Sign the Guestbook</a>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Establishment</div>
+  <h2>A Property of Unrivalled Character</h2>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        Nestled on the storied Hardturmstrasse in the heart of Zurich, our establishment
+        offers an unparalleled residential experience for the discerning flatmate.
+        We combine the intimacy of shared living with the chaos of a five-star property
+        managed by no one in particular.
+      </p>
+      <p>
+        Our team of world-class residents is on call 24 hours a day —
+        primarily to ask if you've seen the good pan — and our kitchen
+        operates as a rotating gallery of culinary experiments, some intentional.
+      </p>
+      <p>
+        Whether you're seeking a quiet evening in or a spirited debate about
+        whose turn it is to buy dish soap, Hotel Hardturmstrasse delivers.
+      </p>
+    </div>
+    <div class="about-stats">
+      <div class="stat">
+        <span class="number">1</span>
+        <span class="label">Good pan</span>
+      </div>
+      <div class="stat">
+        <span class="number">∞</span>
+        <span class="label">Unresolved dishes</span>
+      </div>
+      <div class="stat">
+        <span class="number">5★</span>
+        <span class="label">Self-assessed rating</span>
+      </div>
+      <div class="stat">
+        <span class="number">0</span>
+        <span class="label">Functioning door buzzers</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section id="amenities">
+  <div class="section-label">Services &amp; Facilities</div>
+  <h2>World-Class Amenities</h2>
+  <div class="divider"></div>
+  <div class="amenities-grid">
+    <div class="amenity-card">
+      <div class="amenity-icon">🛜</div>
+      <h3>High-Speed Wi-Fi</h3>
+      <p>Blazing fast internet, available to all guests at no extra charge.</p>
+      <p class="fine-print">Password changes without notice. Ask Giovanni.</p>
+    </div>
+    <div class="amenity-card">
+      <div class="amenity-icon">☕</div>
+      <h3>In-Room Breakfast</h3>
+      <p>A curated selection of cereals, forgotten cheese, and whatever bread is left.</p>
+      <p class="fine-print">Continental breakfast means you take what you find.</p>
+    </div>
+    <div class="amenity-card">
+      <div class="amenity-icon">🧹</div>
+      <h3>Housekeeping</h3>
+      <p>Available on a rotating schedule, theoretically. The rota is on the fridge.</p>
+      <p class="fine-print">The rota has been on the fridge since 2023.</p>
+    </div>
+    <div class="amenity-card">
+      <div class="amenity-icon">🎵</div>
+      <h3>Live Entertainment</h3>
+      <p>Spontaneous kitchen concerts, bathroom acoustics, and occasional freestyle philosophy.</p>
+      <p class="fine-print">Show times are unpredictable. Earplugs not provided.</p>
+    </div>
+    <div class="amenity-card">
+      <div class="amenity-icon">📦</div>
+      <h3>Concierge Service</h3>
+      <p>Package acceptance, parcel forwarding, and judgement-free buzzer pressing — whoever is home.</p>
+      <p class="fine-print">Concierge cannot be held responsible for opened parcels.</p>
+    </div>
+    <div class="amenity-card">
+      <div class="amenity-icon">🌿</div>
+      <h3>Roof Terrace Access</h3>
+      <p>Panoramic views of Hardturmstrasse. Best enjoyed in summer.</p>
+      <p class="fine-print">Roof terrace is a Juliet balcony. Adjust expectations accordingly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GUESTBOOK -->
+<section id="quotes">
+  <div class="section-label">The Guestbook</div>
+  <h2>Words of Wisdom from Our Distinguished Residents</h2>
+  <div class="divider"></div>
+  <p class="quotes-intro">
+    Every great hotel is defined by its people. Here, in their own words, are the visionaries
+    who make Hotel Hardturmstrasse what it is today.
+  </p>
+  <div class="quotes-grid" id="quotes-grid">
+    <p style="color: var(--muted); font-family: Arial, sans-serif; font-size: 0.9rem;">Loading quotes…</p>
+  </div>
+
+  <div class="guestbook-form-wrap">
+    <h3>Leave Your Mark</h3>
+    <p class="form-note">Said something profound? Type it below. Flatmates only — you'll need the house PIN.</p>
+    <form id="quote-form" novalidate>
+      <input type="text" name="name" placeholder="Your name (or alias)" maxlength="60" autocomplete="off" />
+      <textarea name="quote" placeholder="What did you say?" maxlength="500" required></textarea>
+      <input type="text" name="context" placeholder="Context — when / why / what led to this (optional)" maxlength="120" autocomplete="off" />
+      <input type="password" name="pin" placeholder="House PIN" required autocomplete="off" />
+      <button type="submit">Submit Quote</button>
+    </form>
+    <p id="form-message"></p>
+  </div>
+</section>
+
+<!-- HOUSE RULES -->
+<section id="rules">
+  <div class="section-label">Guest Charter</div>
+  <h2>The Rules of the Establishment</h2>
+  <div class="divider"></div>
+  <ul class="rules-list">
+    <li data-num="I.">Wi-Fi credentials shall be shared freely. Any change to the password must be announced with minimum 72 hours notice and a formal written apology.</li>
+    <li data-num="II.">The good pan is communal property. It may not be used for non-stick purposes by those who have lost non-stick privileges.</li>
+    <li data-num="III.">Dishes left in the sink enter a 48-hour grace period. After that, they belong to the hotel and will be displayed in the lobby as art.</li>
+    <li data-num="IV.">Bathroom karaoke is permitted between 08:00 and 22:00. Encores require a majority vote.</li>
+    <li data-num="V.">Any food labelled with a name shall be respected. Food unlabelled for more than 7 days becomes common property. Food unlabelled for 14 days becomes a biohazard.</li>
+    <li data-num="VI.">All guests are encouraged to complete the dish soap procurement rota in a timely and equitable manner. Or just buy some, it's like 2 francs.</li>
+    <li data-num="VII.">Profound statements made after midnight are to be collected and submitted to the guestbook. It is a civic duty.</li>
+  </ul>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Hotel Hardturmstrasse</div>
+  <p>Hardturmstrasse, Zürich — <em>A Residence of Distinction and Misplaced Kitchen Items</em></p>
+  <p style="margin-top:1rem; font-size:0.72rem;">★★★★★ Self-rated &nbsp;·&nbsp; Powered by a Raspberry Pi and sheer audacity</p>
+</footer>
+
+<script>
+  async function loadQuotes() {
+    try {
+      const res = await fetch('/api/quotes');
+      if (!res.ok) throw new Error();
+      const quotes = await res.json();
+      renderQuotes(quotes.slice().reverse());
+    } catch {
+      document.getElementById('quotes-grid').innerHTML =
+        '<p style="color:var(--muted);font-family:Arial,sans-serif;font-size:0.9rem;">Could not load quotes.</p>';
+    }
+  }
+
+  function renderQuotes(quotes) {
+    const grid = document.getElementById('quotes-grid');
+    if (!quotes.length) {
+      grid.innerHTML = '<p style="color:var(--muted);font-family:Arial,sans-serif;font-size:0.9rem;">No quotes yet. Be the first.</p>';
+      return;
+    }
+    grid.innerHTML = quotes.map(q => `
+      <div class="quote-card">
+        <span class="quote-mark">"</span>
+        <blockquote>"${q.quote}"</blockquote>
+        <div class="attribution">${q.name}</div>
+        ${q.context ? `<div class="context">${q.context}</div>` : ''}
+      </div>
+    `).join('');
+  }
+
+  document.getElementById('quote-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+
+    const data = {
+      quote:   form.quote.value.trim(),
+      name:    form.name.value.trim() || 'Anonymous',
+      context: form.context.value.trim(),
+      pin:     form.pin.value,
+    };
+
+    btn.disabled = true;
+    btn.textContent = 'Submitting…';
+
+    try {
+      const res = await fetch('/api/quotes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const result = await res.json();
+      if (res.ok) {
+        form.reset();
+        showMessage('Quote added. The hotel thanks you.', 'success');
+        loadQuotes();
+      } else {
+        showMessage(result.error || 'Something went wrong.', 'error');
+      }
+    } catch {
+      showMessage('Connection error. Is the server running?', 'error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Submit Quote';
+    }
+  });
+
+  function showMessage(text, type) {
+    const msg = document.getElementById('form-message');
+    msg.textContent = text;
+    msg.style.color = type === 'success' ? 'var(--gold)' : '#e74c3c';
+    setTimeout(() => { msg.textContent = ''; }, 5000);
+  }
+
+  loadQuotes();
+</script>
+</body>
+</html>
