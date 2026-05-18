@@ -23,7 +23,13 @@ The site runs on `http://<pi-ip>:5000`.
 
 ## To run on boot (systemd)
 
-Create `/etc/systemd/system/hotel.service`:
+**1. Create the service file:**
+
+```bash
+sudo nano /etc/systemd/system/hotel.service
+```
+
+Paste the following — adjust the `WorkingDirectory` path if the repo is somewhere else:
 
 ```ini
 [Unit]
@@ -31,16 +37,32 @@ Description=Hotel Hardturmstrasse
 After=network.target
 
 [Service]
-WorkingDirectory=/home/pi/HardturmstrasseWebsite
+WorkingDirectory=/home/gio/Desktop/HardturmstrasseWebsite
 Environment=GUESTBOOK_PIN=yourpin
-ExecStart=/usr/bin/python3 app.py
+ExecStart=/home/gio/Desktop/HardturmstrasseWebsite/env/bin/python app.py
 Restart=always
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-Then: `sudo systemctl enable --now hotel`
+**2. Enable and start:**
+
+```bash
+sudo systemctl enable hotel
+sudo systemctl start hotel
+```
+
+The service will now start automatically on every boot.
+
+**Useful commands:**
+
+```bash
+sudo systemctl status hotel   # check if it's running
+sudo systemctl stop hotel     # stop it
+sudo systemctl restart hotel  # restart after changes (e.g. git pull)
+journalctl -u hotel -f        # view live logs
+```
 
 ## Security notes
 
