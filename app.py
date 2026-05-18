@@ -3,6 +3,7 @@ import os
 import time
 from collections import defaultdict
 from html import escape
+from typing import Dict, List
 from flask import Flask, jsonify, request, send_from_directory
 
 app = Flask(__name__, static_folder=".")
@@ -14,7 +15,7 @@ MAX_CONTEXT = 120
 RATE_WINDOW = 300   # seconds
 RATE_MAX = 3        # submissions per IP per window
 
-_rate_store: dict[str, list[float]] = defaultdict(list)
+_rate_store: Dict[str, List[float]] = defaultdict(list)
 
 
 def load_quotes() -> list:
